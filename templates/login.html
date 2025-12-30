@@ -16,9 +16,15 @@
                 <h3>New here?</h3>
                 <p>Join CipherCore secure mail system and explore end-to-end encryption.</p>
                 
-                <a href="{{ url_for('auth.register_page') }}" class="btn transparent" style="display:flex; justify-content:center; align-items:center; text-decoration:none;">SIGN UP</a>
+                <a href="{{ url_for('auth.register_page') }}" 
+                   class="btn transparent" 
+                   style="display:flex; justify-content:center; align-items:center; text-decoration:none;">
+                   SIGN UP
+                </a>
                 
-                <img src="{{ url_for('auth.static', filename='images/enc.png') }}" class="image" alt="Enc">
+                <img src="{{ url_for('auth.static', filename='images/enc.png') }}" 
+                     class="image" 
+                     alt="Enc">
             </div>
         </div>
 
@@ -28,7 +34,7 @@
                 
                 <div class="input-field">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" placeholder="Username" required />
+                    <input type="email" name="email" placeholder="Email" required />
                 </div>
                 
                 <div class="input-field">
@@ -49,6 +55,33 @@
         </div>
 
     </div>
+
+    <!-- PASSWORD ERROR POPUP -->
+    <div class="password-error"
+         id="passwordError"
+         data-error="{{ 'true' if error else 'false' }}">
+        Email or password is incorrect
+    </div>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", () => {
+            const errorBox = document.getElementById("passwordError");
+
+            // Her zaman kapalı başla (geri tuşu bug'ını çözer)
+            errorBox.style.display = "none";
+
+            // Backend’ten hata var mı kontrol et
+            const hasError = errorBox.dataset.error === "true";
+
+            if (hasError) {
+                errorBox.style.display = "block";
+
+                setTimeout(() => {
+                    errorBox.style.display = "none";
+                }, 3000);
+            }
+        });
+    </script>
 
 </body>
 </html>

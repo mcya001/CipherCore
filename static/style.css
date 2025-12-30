@@ -206,6 +206,26 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+.password-error {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: #764ba2;
+    padding: 30px 50px;
+    min-width: 320px;
+    font-size: 18px;
+    border-radius: 12px;
+    font-weight: 600;
+    z-index: 9999;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+
+
 /* ARKA PLAN ŞEKİLLERİ */
 .shape {
     position: absolute;

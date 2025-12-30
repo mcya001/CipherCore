@@ -1,5 +1,8 @@
 import pymysql.cursors
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def get_db_connection():
     return pymysql.connect(

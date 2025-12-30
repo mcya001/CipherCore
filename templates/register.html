@@ -19,7 +19,7 @@
             <h2 class="glass-title">Sign Up</h2>
 
             <div class="glass-input">
-                <input type="text" name="fullname" placeholder="Full Name" required>
+                <input type="text" name="username" placeholder="Full Name" required>
             </div>
 
             <div class="glass-input">
@@ -51,6 +51,29 @@
         <div class="decoration-circle"></div>
 
     </div>
+
+    <!-- Password mismatch alert -->
+<div id="password-error" class="password-error">
+    Şifreler uyuşmuyor!
+</div>
+
+<script>
+document.querySelector(".register-form").addEventListener("submit", function (e) {
+    const password = document.querySelector("input[name='password']").value;
+    const confirmPassword = document.querySelector("input[name='confirm_password']").value;
+    const errorBox = document.getElementById("password-error");
+
+    if (password !== confirmPassword) {
+        e.preventDefault(); // formun gönderilmesini durdur
+        errorBox.style.display = "block";
+
+        // 3 saniye sonra otomatik kapansın
+        setTimeout(() => {
+            errorBox.style.display = "none";
+        }, 3000);
+    }
+});
+</script>
 
 </body>
 </html>
