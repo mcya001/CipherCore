@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ARKA PLAN */
+body.mail-body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f0f2f5, #e6e9f0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ANA CONTAINER */
+.mail-container {
+  width: 1000px;
+  height: 600px;
+  background: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  display: flex;
+  overflow: hidden;
+}
+
+/* SOL SIDEBAR */
+.mail-sidebar {
+  width: 260px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mail-sidebar h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: 700;
+}
+
+.mail-sidebar a {
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 18px;
+  margin-bottom: 12px;
+  transition: 0.3s;
+
+  /* ŞEFFAF BALONCUK */
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+
+.mail-sidebar a:hover,
+.mail-sidebar a.active {
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+
+/* SAĞ İÇERİK */
+.mail-content {
+  flex: 1;
+  padding: 35px;
+  overflow-y: auto;
+  background-color: #f9fafc;
+}
+
+/* BAŞLIK */
+.mail-header {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* MAIL KUTULARI */
+.mail-item {
+  display: block;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px 22px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.3s;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.mail-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+/* OKUNMAMIŞ MAIL */
+.mail-item.unread {
+  border-left: 6px solid #6a11cb;
+  background: #eef1ff;
+  font-weight: 600;
+}
+
+/* MAIL METİNLERİ */
+.mail-sender {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.mail-preview {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* MAIL OKUMA SAYFASI */
+.mail-read {
+  max-width: 800px;
+}
+
+.mail-subject {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.mail-meta {
+  display: flex;
+  gap: 30px;
+  font-size: 0.85rem;
+  color: #777;
+  margin-bottom: 25px;
+}
+
+.mail-body {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  line-height: 1.7;
+  color: #333;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* GERİ DÖN LİNK */
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #6a11cb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/* SEND MAIL FORM */
+.send-form {
+  max-width: 500px;
+}
+
+.send-form input,
+.send-form textarea {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 15px 20px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  background: #f0f0f0;
+  color: #333;
+}
+
+.send-form textarea {
+  resize: none;
+  height: 140px;
+}
+
+/* GÖNDER BUTONU */
+.send-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(90deg, #6a11cb, #dc2430);
+  transition: 0.3s;
+}
+
+.send-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.02);
+}
+

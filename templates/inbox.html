@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<h2 class="mail-header">Inbox</h2>
+
+{% if mails %}
+    {# GERÇEK MAİLLER #}
+    {% for mail in mails %}
+    <a href="{{ url_for('messages.read_mail', mail_id=mail.id) }}"
+       class="mail-item {% if not mail.is_read %}unread{% endif %}">
+        <div class="mail-sender">{{ mail.sender }}</div>
+        <div class="mail-preview">Encrypted message</div>
+    </a>
+    {% endfor %}
+{% else %}
+    {# ÖRNEK (DUMMY) MAİLLER #}
+    <a href="#" class="mail-item unread">
+        <div class="mail-sender">alice</div>
+        <div class="mail-preview">Encrypted message</div>
+    </a>
+
+    <a href="#" class="mail-item">
+        <div class="mail-sender">bob</div>
+        <div class="mail-preview">Encrypted message</div>
+    </a>
+
+    <a href="#" class="mail-item">
+        <div class="mail-sender">system</div>
+        <div class="mail-preview">Welcome to CipherCore</div>
+    </a>
+{% endif %}
+
+{% endblock %}

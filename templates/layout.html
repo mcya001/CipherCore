@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>CipherCore</title>
+    <link rel="stylesheet" href="{{ url_for('auth.static', filename='mail.css') }}">
+</head>
+
+<body class="mail-body">
+
+<div class="mail-container">
+
+    <div class="mail-sidebar">
+        <h2>CipherCore</h2>
+
+        <a href="{{ url_for('messages.inbox') }}">Inbox</a>
+        <a href="{{ url_for('messages.send_mail') }}">New Mail</a>
+        <a href="{{ url_for('auth.login_page') }}">Logout</a>
+    </div>
+
+    <div class="mail-content">
+        {% block content %}{% endblock %}
+    </div>
+
+</div>
+
+</body>
+</html>

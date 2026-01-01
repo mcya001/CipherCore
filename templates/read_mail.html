@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<a href="{{ url_for('messages.inbox') }}" class="back-link">← Back</a>
+
+<div class="mail-read">
+    <div class="mail-subject">Message from {{ mail.sender }}</div>
+
+    <div class="mail-meta">
+        <span>{{ mail.created_at }}</span>
+    </div>
+
+    <div class="mail-body-content">
+        {{ mail.encrypted_message }}
+    </div>
+</div>
+{% endblock %}

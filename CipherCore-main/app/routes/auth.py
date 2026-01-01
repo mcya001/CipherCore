@@ -102,4 +102,4 @@ def register_page():
 # Mail ekranı
 @auth_bp.route('/dashboard')
 def dashboard():
-    return render_template('layout.html')
+    return render_template('mail_screen.html')
