@@ -64,7 +64,7 @@ def login_post():
     if user is None:
         return render_template(
             'login.html',
-            error="user_not_found"
+            error=True
         )
 
     stored_hashed_password = user['password_hash']
@@ -73,7 +73,7 @@ def login_post():
     if not check_password_hash(stored_hashed_password, password):
         return render_template(
             'login.html',
-            error="wrong_password"
+            error=True
         )
 
     # Private Key doğrulaması
@@ -117,7 +117,7 @@ def register_page():
         confirm_password = request.form.get('confirm_password')
 
         if password != confirm_password:
-            return "Şifreler uyuşmuyor!"
+            return render_template('register.html', error="Şifreler uyuşmuyor!")
 
         hashed_password = generate_password_hash(password)
 
@@ -157,27 +157,36 @@ def register_page():
 
         # DB INSERT
         conn = get_db_connection()
-        with conn.cursor() as cursor:
-            cursor.execute(
-                """
-                INSERT INTO users
-                (username, email, password_hash,
-                 public_key, private_key, key_salt, key_iv)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
-                """,
-                (
-                    username,
-                    email,
-                    hashed_password,
-                    public_pem,
-                    encrypted_private_key,
-                    salt,
-                    iv
+        try:
+            with conn.cursor() as cursor:
+                cursor.execute(
+                    """
+                    INSERT INTO users
+                    (username, email, password_hash,
+                     public_key, private_key, key_salt, key_iv)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                    """,
+                    (
+                        username,
+                        email,
+                        hashed_password,
+                        public_pem,
+                        encrypted_private_key,
+                        salt,
+                        iv
+                    )
                 )
-            )
-            conn.commit()
-        conn.close()
-
+                conn.commit()
+        except Exception as e:
+            conn.rollback()
+            error_msg = "Bu email veya kullanıcı adı zaten kullanılıyor!"
+            if "email" in str(e).lower() or "1062" in str(e):
+                error_msg = "Bu email zaten kayıtlı!"
+            elif "username" in str(e).lower():
+                error_msg = "Bu kullanıcı adı zaten alınmış!"
+            return render_template('register.html', error=error_msg)
+        finally:
+            conn.close()
 
         return redirect(url_for('auth.login_page'))
 
@@ -186,4 +195,12 @@ def register_page():
 # Mail ekranı
 @auth_bp.route('/dashboard')
 def dashboard():
-    return render_template('layout.html')
+    if "user_id" not in session:
+        return redirect(url_for('auth.login_page'))
+    return redirect(url_for('messages.inbox'))
+
+# Logout
+@auth_bp.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('auth.login_page'))

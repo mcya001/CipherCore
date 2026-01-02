@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS messages (
     iv BLOB NOT NULL,
     message_hash BINARY(32) NOT NULL,
     signature BLOB NOT NULL,
+    is_read TINYINT(1) DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (sender_id)
         REFERENCES users(id)

@@ -54,7 +54,7 @@
 
     <!-- Password mismatch alert -->
 <div id="password-error" class="password-error">
-    Şifreler uyuşmuyor!
+    {% if error %}{{ error }}{% else %}Şifreler uyuşmuyor!{% endif %}
 </div>
 
 <script>
@@ -73,6 +73,17 @@ document.querySelector(".register-form").addEventListener("submit", function (e)
         }, 3000);
     }
 });
+
+// Show backend error if exists
+{% if error %}
+window.addEventListener("DOMContentLoaded", () => {
+    const errorBox = document.getElementById("password-error");
+    errorBox.style.display = "block";
+    setTimeout(() => {
+        errorBox.style.display = "none";
+    }, 3000);
+});
+{% endif %}
 </script>
 
 </body>
