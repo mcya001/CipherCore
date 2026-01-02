@@ -1,9 +1,27 @@
 {% extends "layout.html" %} 
-{% block content %} 
-<h2 class="mail-header">✉️ New Mail</h2>
-<form class="send-form">
-<input type="text" placeholder="Receiver username:" required>
-<textarea placeholder="Write your message here:" required>
+{% block content %}
 
-</textarea> <button class="send-btn">Send</button> </form> 
+<h2 class="mail-header">✉️ New Mail</h2>
+
+<form class="send-form"
+      method="POST"
+      action="{{ url_for('messages.send_mail_post') }}">
+
+    <input type="email"
+           name="receiver"
+           placeholder="Receiver email"
+           required>
+
+    <textarea name="message"
+              placeholder="Write your message here"
+              required></textarea>
+
+    <input type="password"
+           name="password"
+           placeholder="Your account password"
+           required>
+
+    <button class="send-btn" type="submit">Send</button>
+</form>
+
 {% endblock %}
